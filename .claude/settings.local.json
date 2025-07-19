@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(/Users/leoluonew/opt/anaconda3/envs/visit_report_automation/bin/python test_comprehensive_treatment.py)",
+      "Bash(/Users/leoluonew/opt/anaconda3/envs/visit_report_automation/bin/python test_api_integration.py)",
+      "Bash(rg:*)",
+      "Bash(grep:*)",
+      "Bash(mkdir:*)",
+      "Bash(ls:*)",
+      "Bash(conda activate:*)"
+    ],
+    "deny": []
+  }
+}
