@@ -54,6 +54,8 @@ haaai-social-scribe/
 │   │   └── views/            # 頁面組件
 │   ├── package.json          # Node.js 依賴
 │   └── vite.config.ts        # Vite 開發設定
+├── start_services.sh          # 一鍵啟動腳本
+├── stop_services.sh           # 一鍵停止腳本
 └── temp_sessions/            # 會話暫存目錄
 ```
 
