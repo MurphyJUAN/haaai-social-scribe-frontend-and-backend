@@ -15,7 +15,7 @@
               class="md:w-[10%] mr-4 text-deepPurple font-semibold hover:text-deepBlue"
               @click="onClickCancel($event)"
             >
-              取消
+              取消專案
             </button>
             <div class="md:w-[90%] flex justify-center items-center">
               <p class="font-semibold text-lg">編輯區</p>
@@ -24,7 +24,7 @@
               class="md:w-[10%] mr-4 text-deepPurple font-semibold hover:text-deepBlue"
               @click="onClickSave"
             >
-              儲存
+              儲存專案
             </button>
           </div>
         </template>
