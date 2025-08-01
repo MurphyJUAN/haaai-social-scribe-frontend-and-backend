@@ -246,7 +246,7 @@ const availableSections = ref([
     value: 'case_family_situation', 
     description: '家庭人員的組成（結構、年齡）、家人的相處模式（關係）、教育程度、婚姻關係、家庭的權力結構、經濟狀況、就業情形、財產分配或收入、重大事件、居住環境',
     category: '個案概況(必須)',
-    icon: 'pi-home',
+    icon: 'pi pi-home',
     required: true,
     order: 2
   },
@@ -255,7 +255,7 @@ const availableSections = ref([
     value: 'case_children_situation', 
     description: '子女生活或教育上的問題、教養的問題、親子關係、過往照顧的狀況、是否有特殊疾病或狀況等',
     category: '個案概況(必須)',
-    icon: 'pi-baby',
+    icon: 'pi pi-baby',
     required: true,
     order: 3
   },
@@ -264,7 +264,7 @@ const availableSections = ref([
     value: 'case_relationship_chart', 
     description: '家庭成員及重要他人的關係網絡圖，將另開分頁顯示AI生成結果',
     category: '個案概況(必須)',
-    icon: 'pi-sitemap',
+    icon: 'pi pi-sitemap',
     required: true,
     order: 4
   },
@@ -275,7 +275,7 @@ const availableSections = ref([
     value: 'legal_status', 
     description: '是否有訴訟(如民事離婚、保護令、暫時處份、強制執行、刑事案件-家暴、妨害性自主、法律爭議、法院未成年子女相關訴訟(如酌定親權-監護權、會面交往、給付扶養)、是否有犯罪服刑、涉及家庭暴力...等等',
     category: '個案狀況(可選)',
-    icon: 'pi-balance-scale',
+    icon: 'pi pi-balance-scale',
     order: 5
   },
   { 
@@ -283,7 +283,7 @@ const availableSections = ref([
     value: 'economic_financial_status', 
     description: '主要收入來源、主要經濟提供者、是否有人身保險、是否負債、個案謀生能力、主要花費負擔',
     category: '個案狀況(可選)',
-    icon: 'pi-money-bill',
+    icon: 'pi pi-money-bill',
     order: 6
   },
   { 
@@ -291,7 +291,7 @@ const availableSections = ref([
     value: 'safety_security_status', 
     description: '是否具有攻擊風險、訪視時應注意事項、是否有家暴或受虐可能、是否有家人間的性騷擾或性侵害、是否擔心受害、是否有人身安全問題、是否需要搬離住所或聯繫當地警局協助等',
     category: '個案狀況(可選)',
-    icon: 'pi-shield',
+    icon: 'pi pi-shield',
     required: true, // 安全狀況應為必選
     order: 7
   },
@@ -300,7 +300,7 @@ const availableSections = ref([
     value: 'psychological_emotional_status', 
     description: '個案或其家人的人格特質、情緒穩定度、訪視的態度、身心狀況、是否有諮商或看精神科（或疾病史）、是否有自我傷害傾向、重大壓力事件',
     category: '個案狀況(可選)',
-    icon: 'pi-brain',
+    icon: 'pi pi-brain',
     order: 8
   },
   { 
@@ -308,7 +308,7 @@ const availableSections = ref([
     value: 'parenting_education_status', 
     description: '個案或其家庭的親職能力、親職教養上的困難、孩子接受課後照顧或補習情形、孩子學業成績表現、學校中的師生關係、孩子與同儕的關係或互動、學業壓力',
     category: '個案狀況(可選)',
-    icon: 'pi-book',
+    icon: 'pi pi-book',
     order: 9
   },
   { 
@@ -316,7 +316,7 @@ const availableSections = ref([
     value: 'early_intervention_childcare_status', 
     description: '個案與配偶之間的互動頻率、彼此情感支持狀況、家務責任分工、與孩子互動的頻率與深度、是否有隔代教養的問題、孩子與祖父母的情感關係、教養因應問題的策略或技巧',
     category: '個案狀況(可選)',
-    icon: 'pi-heart',
+    icon: 'pi pi-heart',
     order: 10
   },
   { 
@@ -324,7 +324,7 @@ const availableSections = ref([
     value: 'medical_physical_status', 
     description: '個案或其家人的罹病與診治史、對疾病的認識與態度、是否有長期用藥、是否具有身心障礙資格或有重大傷病卡、是否有慢性疾病或有重大疾病，服藥穩定度、對醫療的期待、醫療團隊的評估',
     category: '個案狀況(可選)',
-    icon: 'pi-heart-fill',
+    icon: 'pi pi-heart',
     order: 11
   },
   { 
@@ -332,7 +332,7 @@ const availableSections = ref([
     value: 'support_system_status', 
     description: '支持系統(正式系統、非正式系統)、主要照顧者、是否有委任律師、資源使用的能力、經常請教討論的對象、這些支持系統或支持者所提供的訊息或協助',
     category: '個案狀況(可選)',
-    icon: 'pi-users',
+    icon: 'pi pi-users',
     order: 12
   },
   { 
@@ -340,7 +340,7 @@ const availableSections = ref([
     value: 'cultural_traditional_status', 
     description: '國籍(若非台灣國籍)、民族(若非漢族)、宗教信仰背景、與台灣主流文化不同的生活習慣、生活價值觀、生活適應問題、語言溝通問題、與遠地或國外家人的關係',
     category: '個案狀況(可選)',
-    icon: 'pi-globe',
+    icon: 'pi pi-globe',
     order: 13
   },
 
@@ -350,7 +350,7 @@ const availableSections = ref([
     value: 'case_needs_expectations', 
     description: '個案對目前狀況的想法或規劃、所表達的需求、根據過往經驗而希望改進的地方、陪同或喘息的需求、希望能解決的問題、期待從政府或相關單位得到的資源或協助',
     category: '需求與評估',
-    icon: 'pi-flag',
+    icon: 'pi pi-flag',
     required: true,
     order: 14
   },
@@ -359,7 +359,7 @@ const availableSections = ref([
     value: 'family_function_assessment', 
     description: '從專業且資深的社工角度，評估個案家庭功能的優勢處、劣勢處、目前的危機、未來可改變的機會',
     category: '需求與評估',
-    icon: 'pi-chart-line',
+    icon: 'pi pi-chart-line',
     required: true,
     order: 15
   },
@@ -368,7 +368,7 @@ const availableSections = ref([
     value: 'overall_assessment_recommendations', 
     description: '從專業且資深的社工角度，評估個案目前的能動性、主要需要解決的問題、可能需要立即協助的需求、需要長期陪伴的需求、需要搭配其他單位資源的需求等等。儘量從不同面向完整提供，避免遺漏。',
     category: '需求與評估',
-    icon: 'pi-cog',
+    icon: 'pi pi-cog',
     required: true,
     order: 16
   }
