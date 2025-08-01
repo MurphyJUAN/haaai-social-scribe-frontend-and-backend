@@ -278,7 +278,7 @@
                 <h4 class="font-semibold text-base text-emerald-600 mb-3">🚀 立即可用</h4>
                 <ul class="text-sm text-gray-700 space-y-2">
                   <li>• 適度去識別化後安全使用</li>
-                  <li>• 從簡單報告開始嘗試</li>
+                  <li>• 從簡單記錄開始嘗試</li>
                   <li>• 保持專業判斷優先</li>
                   <li>• 與督導討論重要案件</li>
                 </ul>

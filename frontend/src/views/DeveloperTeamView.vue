@@ -8,7 +8,7 @@
           <i class="pi pi-users mr-3 text-blue-600"></i>
           開發團隊
         </h1>
-        <p class="text-lg text-gray-600">AI 社工報告系統背後的專業團隊</p>
+        <p class="text-lg text-gray-600">AI 社工訪視記錄系統背後的開發團隊</p>
       </div>
 
       <div class="space-y-8">
@@ -108,7 +108,7 @@
                 </div>
                 <div class="flex items-center text-sm text-gray-700">
                   <i class="pi pi-clipboard text-blue-500 mr-3"></i>
-                  <span>報告格式與倫理標準</span>
+                  <span>記錄格式與倫理標準</span>
                 </div>
                 <div class="flex items-center text-sm text-gray-700">
                   <i class="pi pi-users text-purple-500 mr-3"></i>
@@ -182,7 +182,7 @@
                 </div>
                 <div class="flex items-center text-sm text-gray-700">
                   <i class="pi pi-file-edit text-purple-500 mr-3"></i>
-                  <span>專業報告撰寫</span>
+                  <span>專業記錄撰寫</span>
                 </div>
                 <div class="flex items-center text-sm text-gray-700">
                   <i class="pi pi-heart text-red-500 mr-3"></i>

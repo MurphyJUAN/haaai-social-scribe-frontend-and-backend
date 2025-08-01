@@ -39,7 +39,7 @@
         </template>
         
         <template #report-config-tab>
-          <!-- 報告設定內容 -->
+          <!--記錄設定內容 -->
           <ReportConfigPanel />
         </template>
         
@@ -93,7 +93,7 @@ const onClickSave = () => {
 const onClickCancel = (event: Event) => {
   confirm.require({
     target: event.currentTarget as HTMLElement,
-    message: '你確定要清除內容嗎？重新整理後網頁將不會保留目前生成的逐字稿與報告',
+    message: '你確定要清除內容嗎？重新整理後網頁將不會保留目前生成的逐字稿與訪視記錄',
     icon: 'pi pi-exclamation-triangle',
     acceptLabel: '確認',
     rejectLabel: '取消',

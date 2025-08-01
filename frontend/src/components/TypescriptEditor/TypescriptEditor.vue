@@ -56,7 +56,7 @@
           @click="proceedToReportConfig"
         >
           <img src="@/assets/add.png" alt="icon" class="h-5 mr-1" />
-          下一步：報告設定
+          下一步：記錄設定
         </Button>
       </div>
     </template>
@@ -85,7 +85,7 @@ onMounted(() => {
   sessionStore.initializeSession()
 })
 
-// 跳轉到報告設定頁面
+// 跳轉到記錄設定頁面
 const proceedToReportConfig = () => {
   const transcript = transcriptText.value?.trim()
   if (!transcript) {
@@ -93,7 +93,7 @@ const proceedToReportConfig = () => {
     return
   }
   
-  // 跳轉到報告設定分頁 (索引 1)
+  // 跳轉到記錄設定分頁 (索引 1)
   sessionStore.setActiveTab(1)
 }
 

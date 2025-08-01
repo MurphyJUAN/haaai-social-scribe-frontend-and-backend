@@ -2,8 +2,8 @@
   <div class="report-config-panel p-6">
     <!-- 頁面標題 -->
     <div class="mb-6">
-      <h2 class="text-2xl font-bold text-gray-800 mb-2">報告設定</h2>
-      <p class="text-gray-600">選擇需要生成的報告段落</p>
+      <h2 class="text-2xl font-bold text-gray-800 mb-2">記錄設定</h2>
+      <p class="text-gray-600">選擇需要生成的記錄段落</p>
     </div>
 
     <!-- 段落選擇區域 -->
@@ -20,10 +20,10 @@
           <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
             <div class="flex items-center gap-2 mb-3">
               <i class="pi pi-info-circle text-blue-600"></i>
-              <h4 class="font-medium text-blue-800">以下段落將預設包含在報告中</h4>
+              <h4 class="font-medium text-blue-800">以下段落將預設包含在記錄中</h4>
             </div>
             <p class="text-sm text-blue-700 mb-4">
-              基於基本資訊整理需求與潛在安全性問題評估，以下段落為社工訪視報告必要內容，系統將自動包含。
+              基於基本資訊整理需求與潛在安全性問題評估，以下段落為社工訪視記錄必要內容，系統將自動包含。
             </p>
             
             <!-- 按段落分組顯示 -->
@@ -159,7 +159,7 @@
       <div class="text-sm text-gray-500">
         <span v-if="configValidation.isValid" class="text-green-600 flex items-center gap-1">
           <i class="pi pi-check-circle"></i>
-          設定完成，可以生成報告
+          設定完成，可以生成記錄
         </span>
         <span v-else class="text-orange-600 flex items-center gap-1">
           <i class="pi pi-exclamation-triangle"></i>
@@ -176,7 +176,7 @@
           outlined
         />
         <Button 
-          label="下一步：生成報告" 
+          label="下一步：生成記錄" 
           icon="pi pi-arrow-right" 
           :disabled="!configValidation.isValid"
           @click="proceedToReport"
@@ -225,7 +225,7 @@ const { transcriptText, reportText, sessionId, autoGeneratePersonGraph } = store
 // 移除家庭關係圖相關引用
 
 // 預設模板
-const DEFAULT_TEMPLATE = '通用社工評估報告'
+const DEFAULT_TEMPLATE = '通用社工評估記錄'
 
 // 通用議題選項 - 按照社工訪視紀錄標準架構
 const availableSections = ref([
@@ -471,7 +471,7 @@ const configValidation = computed(() => {
   }
   
   if (selectedSections.value.length === 0) {
-    return { isValid: false, message: '請至少選擇一個報告段落' }
+    return { isValid: false, message: '請至少選擇一個記錄段落' }
   }
   
   return { isValid: true, message: '設定完成，已包含所有必要項目' }
@@ -584,13 +584,13 @@ const proceedToReport = async () => {
     customSettings: {}
   }
   
-  console.log('報告配置 (基於新架構):', config)
+  console.log('記錄配置 (基於新架構):', config)
   
-  // 開始生成報告
+  // 開始生成記錄
   await generateReportWithConfig(config)
 }
 
-// 生成報告的核心函數
+// 生成記錄的核心函數
 const generateReportWithConfig = async (config: any) => {
   const transcript = transcriptText.value?.trim()
   if (!transcript) {
@@ -603,7 +603,7 @@ const generateReportWithConfig = async (config: any) => {
   sessionStore.setReportStage('generating')
   sessionStore.setReportText('') // 清空
   
-  // 跳轉到報告初稿分頁 (索引 2)
+  // 跳轉到記錄初稿分頁 (索引 2)
   sessionStore.setActiveTab(2)
 
   try {
@@ -649,14 +649,14 @@ const generateReportWithConfig = async (config: any) => {
     trackAPICall('run', 'report_generation', true)
     sessionStore.setReportStage('done')
     
-    // 報告生成完成後，自動生成關係圖
+    // 記錄生成完成後，自動生成關係圖
     if (autoGeneratePersonGraph.value) {
       await generatePersonGraphFromReport()
     }
     
     // 移除家庭關係圖自動生成
   } catch (err) {
-    console.error('生成報告失敗', err)
+    console.error('生成記錄失敗', err)
     sessionStore.setReportText('[生成失敗，請稍後再試]')
     sessionStore.setReportStage('done')
     trackAPICall('run', 'report_generation', false)
@@ -667,7 +667,7 @@ const generateReportWithConfig = async (config: any) => {
 const generatePersonGraphFromReport = async () => {
   const reportTextValue = reportText.value?.trim()
   if (!reportTextValue) {
-    console.warn('沒有報告內容，無法生成人物關係圖')
+    console.warn('沒有記錄內容，無法生成人物關係圖')
     return
   }
 

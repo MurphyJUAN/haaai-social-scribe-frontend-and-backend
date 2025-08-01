@@ -16,7 +16,7 @@
         </div>
         <div class="flex items-center">
           <span class="w-2 h-2 rounded-full mr-2" :class="sessionStore.reportText ? 'bg-green-500' : 'bg-gray-400'"></span>
-          報告內容 ({{ sessionStore.reportText ? '已生成' : '無' }})
+          記錄內容 ({{ sessionStore.reportText ? '已生成' : '無' }})
         </div>
       </div>
     </div>

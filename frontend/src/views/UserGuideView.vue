@@ -6,7 +6,7 @@
       <div class="text-center mb-8">
         <h1 class="text-4xl font-bold text-gray-800 mb-4 flex items-center justify-center">
           <i class="pi pi-book mr-3 text-blue-600"></i>
-          AI 社工報告系統使用說明
+          AI 社工訪視記錄系統使用說明
         </h1>
         <p class="text-lg text-gray-600">專為社工設計的智能文書處理助手</p>
       </div>
@@ -19,7 +19,7 @@
             <i class="pi pi-star mr-3"></i>這是什麼系統？
           </h2>
           <p class="text-gray-700 leading-relaxed mb-6 text-lg">
-            這是一個<strong>專為社工設計的 AI 助手系統</strong>，可以幫您快速完成文書工作。無論是錄音檔案、會談記錄，還是直接輸入的文字，系統都能幫您整理成專業的社工報告，讓您有更多時間專注在案主服務上。
+            這是一個<strong>專為社工設計的 AI 助手系統</strong>，可以幫您快速完成文書工作。無論是錄音檔案、會談記錄，還是直接輸入的文字，系統都能幫您整理成專業的社工訪視記錄，讓您有更多時間專注在案主服務上。
           </p>
           
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -35,7 +35,7 @@
             </div>
             <div class="text-center p-4 bg-white rounded-lg shadow-sm">
               <i class="pi pi-robot text-3xl text-red-600 mb-3 block"></i>
-              <div class="font-medium text-base">3. 生成報告</div>
+              <div class="font-medium text-base">3. 生成記錄</div>
               <div class="text-sm text-gray-500 mt-1">AI 自動整理</div>
             </div>
             <div class="text-center p-4 bg-white rounded-lg shadow-sm">
@@ -126,11 +126,11 @@
             </div>
           </div>
 
-          <!-- 步驟3：生成報告 -->
+          <!-- 步驟3：生成記錄 -->
           <div class="mb-6 bg-white p-6 rounded-lg border border-green-200 shadow-sm">
             <div class="flex items-center mb-4">
               <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-4">3</span>
-              <h3 class="font-bold text-xl text-green-700">AI 幫您生成專業報告</h3>
+              <h3 class="font-bold text-xl text-green-700">AI 幫您生成專業的訪視記錄</h3>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -147,7 +147,7 @@
               <div>
                 <h4 class="font-semibold text-base text-green-600 mb-3">✏️ 您可以調整</h4>
                 <ul class="text-sm text-gray-700 space-y-2">
-                  <li>• 選擇需要的報告區段</li>
+                  <li>• 選擇需要的記錄區段</li>
                   <li>• 編輯 AI 生成的內容</li>
                   <li>• 調整專業用詞和表達</li>
                   <li>• 複製到您的正式文件</li>
@@ -202,7 +202,7 @@
           
           <div class="bg-white p-6 rounded-lg border border-orange-200 shadow-sm">
             <p class="text-base text-gray-700 mb-4">
-              根據前面的報告內容，AI 會幫您生成專業的處遇計畫建議，包含：
+              根據前面的記錄內容，AI 會幫您生成專業的處遇計畫建議，包含：
             </p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -254,7 +254,7 @@
               </h3>
               <ul class="text-sm text-gray-700 space-y-2">
                 <li>• 理解社工專業脈絡</li>
-                <li>• 生成高品質報告</li>
+                <li>• 生成高品質記錄</li>
                 <li>• 符合倫理要求</li>
                 <li>• 持續優化改進</li>
               </ul>
@@ -307,7 +307,7 @@
                 </li>
                 <li class="flex items-start">
                   <i class="pi pi-check-circle text-green-500 mr-2 mt-0.5 flex-shrink-0"></i>
-                  生成的報告請再次檢視編輯
+                  生成的記錄請再次檢視編輯
                 </li>
               </ul>
             </div>

@@ -13,8 +13,8 @@
     <div class="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
 
     <div class="relative z-10 flex flex-col items-center justify-center h-full px-4">
-      <h1 class="text-3xl font-bold mb-2">社工專屬的智慧報告助手</h1>
-      <p class="text-lg mb-6">支援錄音上傳與逐字稿產出，AI自動生成訪視報告，效率再升級。</p>
+      <h1 class="text-3xl font-bold mb-2">社工專屬的訪視記錄助手</h1>
+      <p class="text-lg mb-6">支援錄音上傳與逐字稿產出，AI自動生成訪視記錄，效率再升級。</p>
 
       <!-- 錄音中的狀態顯示 -->
       <div v-if="isRecording || isPaused" class="mb-4 p-4 bg-red-600 bg-opacity-80 rounded-lg">

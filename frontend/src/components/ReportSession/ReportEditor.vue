@@ -6,24 +6,24 @@
       :readonly="sessionStore.reportStage === 'generating'"
     />
     <div v-if="sessionStore.reportStage === 'generating'" class="text-gray-500 mt-2">
-      正在產生報告初稿...
+      正在產記錄初稿...
     </div>
     <!-- 操作按鈕 -->
     <div v-else class="flex justify-between items-center pt-4 border-t">
       <div class="text-sm text-gray-500">
         <span v-if="hasValidReport" class="text-green-600 flex items-center gap-1">
           <i class="pi pi-check-circle"></i>
-          報告生成完成，可以下載或進行下一步
+          記錄生成完成，可以下載或進行下一步
         </span>
         <span v-else class="text-orange-600 flex items-center gap-1">
           <i class="pi pi-exclamation-triangle"></i>
-          報告尚未生成完成
+          記錄尚未生成完成
         </span>
       </div>
       
       <div class="flex gap-3">
         <Button 
-          label="下載報告" 
+          label="下載記錄" 
           icon="pi pi-download" 
           severity="secondary" 
           @click="download"

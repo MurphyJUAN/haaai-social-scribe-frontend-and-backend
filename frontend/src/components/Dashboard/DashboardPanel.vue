@@ -41,16 +41,16 @@ const { activeTabIndex, reportStage } = storeToRefs(sessionStore)
         <slot name="transcript-tab" />
       </TabPanel>
       
-      <TabPanel header="報告設定">
+      <TabPanel header="記錄設定">
         <slot name="report-config-tab" />
       </TabPanel>
       
-      <!--<TabPanel header="報告初稿" :disabled="!projectStore.tempAiDocument?.trim()">-->
-      <TabPanel header="報告初稿" :disabled="reportStage === 'idle'">
+ 
+      <TabPanel header="記錄初稿" :disabled="reportStage === 'idle'">
         <slot name="ai-doc-tab" />
       </TabPanel>
       
-      <TabPanel header="處遇計畫">
+      <TabPanel header="處遇計畫設定">
         <slot name="treatment-plan-tab" />
       </TabPanel>
       

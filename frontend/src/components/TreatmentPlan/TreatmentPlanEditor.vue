@@ -3,18 +3,18 @@
     <!-- 頁面標題 -->
     <div class="mb-6">
       <h2 class="text-2xl font-bold text-gray-800 mb-2">處遇計畫</h2>
-      <p class="text-gray-600">基於報告內容生成專業的社工處遇計畫</p>
+      <p class="text-gray-600">基於訪視記錄內容生成專業的社工處遇計畫</p>
     </div>
 
     <!-- 狀態檢查 -->
     <div v-if="!hasReport" class="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
       <div class="flex items-center gap-2 text-orange-700">
         <i class="pi pi-exclamation-triangle"></i>
-        <span class="font-medium">尚未生成報告</span>
+        <span class="font-medium">尚未生成記錄</span>
       </div>
-      <p class="text-orange-600 mt-2">請先完成報告生成，才能建立處遇計畫。</p>
+      <p class="text-orange-600 mt-2">請先完成記錄生成，才能建立處遇計畫。</p>
       <Button 
-        label="前往報告設定" 
+        label="前往記錄設定" 
         icon="pi pi-arrow-left" 
         severity="warning" 
         outlined
@@ -63,7 +63,7 @@
         </template>
         <template #content>
           <div class="space-y-4">
-            <!-- 移除報告摘要 -->
+            <!-- 移除記錄摘要 -->
 
 
 
@@ -266,14 +266,14 @@ const treatmentContent = computed(() => treatmentPlan.value.content)
 const isEditing = computed(() => treatmentPlan.value.isEditing)
 const generatedAt = computed(() => treatmentPlan.value.generatedAt)
 // 移除重複的 hasTreatmentPlan 計算屬性，使用 store 中的
-// 移除報告摘要計算屬性
+// 移除記錄摘要計算屬性
 
 // 方法
 const extractMainIssue = () => {
   const report = reportText.value?.trim()
   if (!report) return ''
   
-  // 嘗試從報告中提取主述問題
+  // 嘗試從記錄中提取主述問題
   const lines = report.split('\n')
   for (const line of lines) {
     if (line.includes('主述') || line.includes('主要問題') || line.includes('問題')) {
@@ -284,7 +284,7 @@ const extractMainIssue = () => {
     }
   }
   
-  return '請根據報告內容描述主要議題'
+  return '請根據記錄內容描述主要議題'
 }
 
 const generateTreatmentPlan = async () => {
@@ -423,7 +423,7 @@ const downloadPlan = () => {
 }
 
 const goToReportConfig = () => {
-  sessionStore.setActiveTab(1) // 報告設定分頁
+  sessionStore.setActiveTab(1) // 記錄設定分頁
 }
 
 const goToPersonGraph = () => {
@@ -440,7 +440,7 @@ const formatDate = (date: Date) => {
   })
 }
 
-// 監聽報告變化，自動提取主述議題
+// 監聽記錄變化，自動提取主述議題
 watch(reportText, () => {
   if (reportText.value && !mainIssue.value) {
     mainIssue.value = extractMainIssue()
