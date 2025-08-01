@@ -131,6 +131,7 @@
                       v-model="selectedSections" 
                       :value="section.value"
                       @change="onSectionChange"
+                      @click.stop 
                       class="mt-1"
                       :binary="false"
                     />
