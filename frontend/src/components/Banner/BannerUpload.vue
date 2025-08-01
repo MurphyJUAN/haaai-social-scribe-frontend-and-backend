@@ -110,11 +110,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onUnmounted } from 'vue'
+import { ref, onUnmounted } from 'vue'
 import bgUrl from '@/assets/banner-background-img.png'
 import { useSessionStore } from '../../stores/useSessionStore'
-import apiClient from '@/api/axiosClient'
 import { trackAPICall } from '@/utils/analytics' // 引入你之前建立的追蹤函數
+import apiClient from '@/api/axiosClient'
 
 
 const props = defineProps<{
@@ -288,28 +288,42 @@ const transcribeAudio = async (file: File) => {
     formData.append('model', 'whisper-1')
     formData.append('response_format', 'text')
 
-    const response = await fetch('https://api.openai.com/v1/audio/transcriptions', {
-      method: 'POST',
+    console.log('>>> 透過後端調用 OpenAI API')
+
+    // 改用後端 API，而不是直接調用 OpenAI
+    const response = await apiClient.post('/audio/transcribe', formData, {
       headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`
-      },
-      body: formData
+        'Content-Type': 'multipart/form-data'
+      }
     })
 
-    const transcript = await response.text()
+    // 檢查後端回應
+    if (!response.data.success) {
+      throw new Error(`API 請求失敗: ${response.data.error}`)
+    }
 
-    if (!transcript) throw new Error('轉錄結果為空')
+    const transcript = response.data.data.original_transcript
+
+    if (!transcript) {
+      throw new Error('轉錄結果為空')
+    }
+
     store.setTranscriptText(transcript)
-
     trackAPICall('audio/transcriptions', 'whisper-1', true)
 
+    // 只有在轉錄成功時才執行校正
     await correctTranscriptWithOpenAI(transcript)
+    
+    // 只有在所有步驟都成功時才設定為 'done'
+    store.setTranscriptStage('done')
+    
   } catch (e) {
     console.error('轉錄失敗', e)
     trackAPICall('audio/transcriptions', 'whisper-1', false)
     store.setTranscriptText('[轉錄失敗，請稍後再試]')
-  } finally {
-    store.setTranscriptStage('done')
+    store.setTranscriptStage('error')
+    // 發生錯誤時不執行 correctTranscriptWithOpenAI
+    return // 提早結束函數，避免執行 finally 中的 setTranscriptStage('done')
   }
 }
 
@@ -318,24 +332,16 @@ const correctTranscriptWithOpenAI = async (transcript: string) => {
 
   const systemPrompt = `你是一位中文逐字稿校對助手，請幫我修正語音辨識轉換的逐字稿中可能錯誤的字詞。不要改變語意，只做錯字修正，並在適當的時候加上換行符號增加可讀性。`
 
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      model: 'gpt-4o-mini-2024-07-18',
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: transcript }
-      ],
-      temperature: 0.2
-    })
+  // 改用後端 API，而不是直接調用 OpenAI
+  const response = await apiClient.post('/audio/correct', {
+    transcript: transcript,
+    systemPrompt: systemPrompt,
+    model: 'gpt-4o-mini-2024-07-18',
+    temperature: 0.2
   })
 
-  const data = await response.json()
-  const correctedText = data.choices?.[0]?.message?.content?.trim()
+  const data = response.data
+  const correctedText = data.success ? data.data.corrected_transcript : null
 
   if (correctedText) {
     store.setTranscriptText(correctedText)

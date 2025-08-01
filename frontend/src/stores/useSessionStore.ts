@@ -9,6 +9,7 @@ export const useSessionStore = defineStore('session', () => {
   const audioFile = ref<File | null>(null)
   const transcriptFile = ref<File | null>(null)
   const transcriptText = ref('')
+  const socialWorkerNotes = ref('') // 新增：社工補充說明
   const reportText = ref('')
   const hasSubmitted = ref(false)
   const transcriptStage = ref<'idle' | 'transcribing' | 'correcting' | 'done' | 'error'>('idle')
@@ -39,6 +40,7 @@ export const useSessionStore = defineStore('session', () => {
   const hasReport = computed(() => !!reportText.value)
   const hasPersonGraph = computed(() => !!personGraphJson.value)
   const hasReportConfig = computed(() => reportConfig.value.isComplete)
+  const hasSocialWorkerNotes = computed(() => !!socialWorkerNotes.value.trim()) // 新增
 
   // actions
   function initializeSession() {
@@ -64,6 +66,9 @@ export const useSessionStore = defineStore('session', () => {
   }
   function setTranscriptText(text: string) {
     transcriptText.value = text
+  }
+  function setSocialWorkerNotes(notes: string) { // 新增
+    socialWorkerNotes.value = notes
   }
   function setReportText(text: string) {
     reportText.value = text
@@ -116,6 +121,7 @@ export const useSessionStore = defineStore('session', () => {
     audioFile.value = null
     transcriptFile.value = null
     transcriptText.value = ''
+    socialWorkerNotes.value = '' // 新增
     reportText.value = ''
     reportStage.value = 'idle'
     transcriptStage.value = 'idle'
@@ -145,6 +151,7 @@ export const useSessionStore = defineStore('session', () => {
     audioFile,
     transcriptFile,
     transcriptText,
+    socialWorkerNotes, // 新增
     reportText,
     hasSubmitted,
     transcriptStage,
@@ -164,6 +171,7 @@ export const useSessionStore = defineStore('session', () => {
     hasReport,
     hasPersonGraph,
     hasReportConfig,
+    hasSocialWorkerNotes, // 新增
     // 現有 actions
     initializeSession,
     setSelectedTemplate,
@@ -173,6 +181,7 @@ export const useSessionStore = defineStore('session', () => {
     setAudioFile,
     setTranscriptFile,
     setTranscriptText,
+    setSocialWorkerNotes, // 新增
     setReportText,
     markSubmitted,
     setPersonGraphJson,
@@ -190,6 +199,6 @@ export const useSessionStore = defineStore('session', () => {
 }, {
   persist: {
     storage: localStorage,
-    paths: ['sessionId', 'transcriptText', 'reportText', 'selectedTemplate', 'activeTabIndex', 'personGraphJson', 'autoGeneratePersonGraph', 'reportConfig', 'currentStep']
+    paths: ['sessionId', 'transcriptText', 'socialWorkerNotes', 'reportText', 'selectedTemplate', 'activeTabIndex', 'personGraphJson', 'autoGeneratePersonGraph', 'reportConfig', 'currentStep'] // 新增 socialWorkerNotes
   }
 })

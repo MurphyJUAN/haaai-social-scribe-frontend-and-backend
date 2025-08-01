@@ -14,6 +14,7 @@ from utils.file_manager import file_manager
 from api.report_routes import report_bp
 from api.treatment_routes import treatment_bp
 from api.graph_routes import graph_bp
+from api.audio_routes import audio_bp  # 新增音頻處理路由
 
 # 創建Flask應用
 app = Flask(__name__)
@@ -23,6 +24,7 @@ CORS(app)
 app.register_blueprint(report_bp)
 app.register_blueprint(treatment_bp)
 app.register_blueprint(graph_bp)
+app.register_blueprint(audio_bp)  # 註冊音頻處理藍圖
 
 # 健康檢查端點
 @app.route('/api/health', methods=['GET'])
@@ -34,7 +36,8 @@ def health_check():
         'modules': {
             'session_manager': 'active',
             'file_manager': 'active',
-            'treatment_plan': 'active'
+            'treatment_plan': 'active',
+            'audio_processing': 'active'  # 新增音頻處理模組狀態
         }
     }
 
@@ -45,7 +48,13 @@ def index():
     return {
         'message': '歡迎使用社工報告自動化系統',
         'version': '2.0',
-        'architecture': 'modular'
+        'architecture': 'modular',
+        'features': [
+            'report_generation',
+            'treatment_planning', 
+            'graph_visualization',
+            'audio_transcription'  # 新增功能
+        ]
     }
 
 if __name__ == '__main__':
@@ -54,5 +63,6 @@ if __name__ == '__main__':
     print("🔧 會話管理器: 已初始化")
     print("📁 文件管理器: 已初始化")
     print("📋 處遇計畫管理器: 已初始化")
+    print("🎤 音頻處理模組: 已初始化")  # 新增訊息
     
     app.run(host='0.0.0.0', port=5353, debug=True)
