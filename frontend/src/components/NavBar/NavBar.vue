@@ -7,7 +7,19 @@ const navbarLinks = [
   {
     to: '/',
     name: '首頁'
-  }
+  },
+  {
+    to: '/userGuide',
+    name: '使用說明'
+  },
+  {
+    to: '/securityGuide',
+    name: '隱私性說明'
+  },
+  {
+    to: '/devTeam',
+    name: '開發團隊'
+  },
 ]
 
 const menuOpen = ref<Boolean>(false)

@@ -16,27 +16,6 @@
       <h1 class="text-3xl font-bold mb-2">社工專屬的智慧報告助手</h1>
       <p class="text-lg mb-6">支援錄音上傳與逐字稿產出，AI自動生成訪視報告，效率再升級。</p>
 
-      <!-- 使用說明與安全性說明按鈕，置中顯示 -->
-      <div class="flex justify-center gap-3 mb-2 w-full">
-        <span
-          class="flex items-center gap-1 px-2 py-1 rounded text-purple-700 border border-purple-700 bg-white hover:bg-purple-50 font-medium shadow-sm cursor-pointer select-none text-sm"
-          style="min-width: 32px; min-height: 32px;"
-          @click="showGuide = true"
-        >
-          <i class="pi pi-question-circle text-base"></i>
-          <span>使用說明</span>
-        </span>
-        
-        <span
-          class="flex items-center gap-1 px-2 py-1 rounded text-emerald-700 border border-emerald-700 bg-white hover:bg-emerald-50 font-medium shadow-sm cursor-pointer select-none text-sm"
-          style="min-width: 32px; min-height: 32px;"
-          @click="showSecurityGuide = true"
-        >
-          <i class="pi pi-shield text-base"></i>
-          <span>安全性說明</span>
-        </span>
-      </div>
-
       <!-- 錄音中的狀態顯示 -->
       <div v-if="isRecording || isPaused" class="mb-4 p-4 bg-red-600 bg-opacity-80 rounded-lg">
         <div class="flex items-center justify-center gap-2 mb-3">
@@ -127,12 +106,6 @@
         </button>
       </div>
     </div>
-
-    <!-- 使用說明 Dialog -->
-    <UserGuideDialog v-model="showGuide" />
-    
-    <!-- 安全性說明 Dialog -->
-    <SecurityGuideDialog v-model="showSecurityGuide" />
   </section>
 </template>
 
@@ -141,8 +114,6 @@ import { ref, computed, onUnmounted } from 'vue'
 import bgUrl from '@/assets/banner-background-img.png'
 import { useSessionStore } from '../../stores/useSessionStore'
 import apiClient from '@/api/axiosClient'
-import UserGuideDialog from './UserGuideDialog.vue'
-import SecurityGuideDialog from './SecurityGuideDialog.vue'
 import { trackAPICall } from '@/utils/analytics' // 引入你之前建立的追蹤函數
 
 
@@ -156,8 +127,6 @@ const scrollToEditor = () => {
 
 const audioInput = ref<HTMLInputElement | null>(null)
 const textInput = ref<HTMLInputElement | null>(null)
-const showGuide = ref(false)
-const showSecurityGuide = ref(false)
 const store = useSessionStore()
 
 // 錄音相關狀態
