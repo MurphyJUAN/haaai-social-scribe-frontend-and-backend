@@ -196,6 +196,7 @@ import { useSessionStore } from '@/stores/useSessionStore'
 import { usePersonGraphStore } from '@/stores/modules/personGraphStore'
 import { storeToRefs } from 'pinia'
 import { trackAPICall } from '@/utils/analytics'
+import apiClient from '@/api/axiosClient'
 
 // JSON 清理函數
 const cleanJsonContent = (content: string): string => {
@@ -608,17 +609,34 @@ const generateReportWithConfig = async (config: any) => {
   sessionStore.setActiveTab(2)
 
   try {
-    const response = await fetch('/api/run', {
+    // 使用 apiClient 的配置構建 URL 和 headers
+    const baseURL = apiClient.defaults.baseURL || ''
+    const fullUrl = `${baseURL}/run`
+    
+    // 記錄請求（模仿 apiClient 的攔截器行為）
+    console.log('API 請求: POST /run')
+    
+    const response = await fetch(fullUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json'
+        // 如果有其他需要的 headers，可以從 apiClient.defaults.headers 複製
+      },
       body: JSON.stringify({ 
         text: transcript,
         template: DEFAULT_TEMPLATE,
         selectedSections: config.selectedSections,
         customSettings: config.customSettings,
         sessionId: sessionId.value
-      })
+      }),
+      signal: AbortSignal.timeout(apiClient.defaults.timeout || 30000) // 使用 apiClient 的超時設置
     })
+    
+    if (!response.ok) {
+      // 模仿 apiClient 的錯誤處理
+      console.error(`API 錯誤 ${response.status}:`, await response.text())
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+    }
     
     if (!response.body) {
       sessionStore.setReportStage('done')
@@ -641,12 +659,14 @@ const generateReportWithConfig = async (config: any) => {
         if (!line.trim()) continue
         try {
           const obj = JSON.parse(line)
+          console.log('>>>contentL', obj.content)
           sessionStore.setReportText(reportText.value + obj.content)
         } catch (e) {
-          // 可加錯誤處理
+          console.warn('解析流數據失敗:', line)
         }
       }
     }
+    
     trackAPICall('run', 'report_generation', true)
     sessionStore.setReportStage('done')
     
@@ -655,10 +675,20 @@ const generateReportWithConfig = async (config: any) => {
       await generatePersonGraphFromReport()
     }
     
-    // 移除家庭關係圖自動生成
   } catch (err) {
     console.error('生成記錄失敗', err)
-    sessionStore.setReportText('[生成失敗，請稍後再試]')
+    
+    // 模仿 apiClient 的錯誤處理邏輯
+    if (err instanceof Error) {
+      if (err.name === 'TimeoutError') {
+        console.error('API 請求超時或網路錯誤')
+        sessionStore.setReportText('[請求超時，請稍後再試]')
+      } else {
+        console.error('API 請求設定錯誤:', err.message)
+        sessionStore.setReportText('[生成失敗，請稍後再試]')
+      }
+    }
+    
     sessionStore.setReportStage('done')
     trackAPICall('run', 'report_generation', false)
   }
@@ -676,7 +706,9 @@ const generatePersonGraphFromReport = async () => {
   sessionStore.setPersonGraphJson('')
 
   try {
-    const response = await fetch('/api/PersonGraph', {
+    const baseURL = apiClient.defaults.baseURL || ''
+    const fullUrl = `${baseURL}/run`
+    const response = await fetch(fullUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 

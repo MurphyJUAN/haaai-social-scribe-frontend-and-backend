@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://hssai-socialworker.phys.nthu.edu.tw/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://140.114.80.195:5353/api',
   headers: {
     'Content-Type': 'application/json'
   },

@@ -18,7 +18,11 @@ from api.audio_routes import audio_bp  # 新增音頻處理路由
 
 # 創建Flask應用
 app = Flask(__name__)
-CORS(app)
+# 配置 CORS - 允許前端域名訪問
+CORS(app, origins=[
+    "http://localhost:5173",  # 開發環境前端
+    "http://localhost:3000",  # 備用前端端口
+], supports_credentials=True, allow_headers=['Content-Type', 'Authorization'])
 
 # 註冊藍圖
 app.register_blueprint(report_bp)

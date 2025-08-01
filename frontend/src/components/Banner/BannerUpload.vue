@@ -1,3 +1,4 @@
+<!-- File: BannerUpload.vue -->
 <template>
   <section
     class="relative text-white text-center overflow-hidden transition-all duration-500"
